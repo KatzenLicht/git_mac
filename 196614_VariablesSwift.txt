@@ -1,0 +1,56 @@
+import Foundation
+
+print("Variables")
+//Int Variable
+var BodoIntVar1: Int = 25
+var BodoIntVar2 = 5
+print("BodoIntVar1 es de tipo \(type(of: BodoIntVar1))")
+print("BodoIntVar2 es de tipo \(type(of: BodoIntVar2))")
+//Float Variable
+var BodoFloatVar1: Float = 1.23
+var BodoFloatVar2 = 1.23 as Float
+print("BodoFloatVar1 es de tipo \(type(of: BodoFloatVar1))")
+print("BodoFloatVar2 es de tipo \(type(of: BodoFloatVar2))")
+//Double Variable
+var BodoDoubleVar1: Double = 36.6
+var BodoDoubleVar2 = 99.9
+print("BodoDoubleVar1 es de tipo \(type(of: BodoDoubleVar1))")
+print("BodoDoubleVar2 es de tipo \(type(of: BodoDoubleVar2))")
+//Bool Variable
+var BodoBoolVar1: Bool = true
+var BodoBoolVar2 = false
+print("BodoBoolVar1 es de tipo \(type(of: BodoBoolVar1))")
+print("BodoBoolVar2 es de tipo \(type(of: BodoBoolVar2))")
+//String Variable
+var BodoStringVar1: String = "Julian"
+var BodoStringVar2 = "Bodoque"
+print("BodoStringVar1 es de tipo \(type(of: BodoStringVar1))")
+print("BodoStringVar2 es de tipo \(type(of: BodoStringVar2))")
+
+print(" ")
+print("Constantes")
+//Int Constante
+let BodoIntCon1: Int = 50
+let BodoIntCon2 = 10
+print("BodoIntCon1 es de tipo \(type(of: BodoIntCon1))")
+print("BodoIntCon2 es de tipo \(type(of: BodoIntCon2))")
+//Float Constante
+let BodoFloatCon1: Float = 4.5678
+let BodoFloatCon2 = Float(4.5678)
+print("BodoFloatCon1 es de tipo \(type(of: BodoFloatCon1))")
+print("BodoFloatCon2 es de tipo \(type(of: BodoFloatCon2))")
+//Double Constante
+let BodoDoubleCon1: Double = 20.0
+let BodoDoubleCon2 = 15.5
+print("BodoDoubleCon1 es de tipo \(type(of: BodoDoubleCon1))")
+print("BodoDoubleCon2 es de tipo \(type(of: BodoDoubleCon2))")
+//Bool Constante
+let BodoBoolCon1: Bool = false
+let BodoBoolCon2 = true
+print("BodoBoolCon1 es de tipo \(type(of: BodoBoolCon1))")
+print("BodoBoolCon2 es de tipo \(type(of: BodoBoolCon2))")
+//String Constante
+let BodoStringCon1: String = "Bodoque en Constante"
+let BodoStringCon2 = "Hola"
+print("BodoStringCon1 es de tipo \(type(of: BodoStringCon1))")
+print("BodoStringCon2 es de tipo \(type(of: BodoStringCon2))")
