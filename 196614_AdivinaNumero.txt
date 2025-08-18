@@ -1,0 +1,152 @@
+var scoreboard: [(String, Int)] = []
+ 
+func pedir_nombre() -> String {
+
+    var nombre: String? = nil
+
+    while true {
+
+        print("Escribe el nombre de tu personaje (4 letras)")
+
+        nombre = readLine()
+
+        if nombre == nil {
+
+            print("No ingresaste nada, intenta de nuevo")
+
+        } else if nombre!.count != 4 {
+
+            print("El nombre debe tener exactamente 4 letras")
+
+        } else {
+
+            return nombre!
+
+        }
+
+    }
+
+}
+ 
+func validar_entrada_a_numero() -> Int {
+
+    var entrada_del_usuario: String? = nil
+
+    var numero_valido: Int? = nil
+
+    while true {
+
+        print("Por favor introduce un numero")
+
+        entrada_del_usuario = readLine()
+
+        if entrada_del_usuario == nil {
+
+            print("Que paso mi compa?, creiste que habia una vulnerabilidad?")
+
+        }
+
+        numero_valido = Int(entrada_del_usuario!)
+
+        if numero_valido == nil {
+
+            print("Lo que introdujiste no fue un numero entero, por favor usa numeros y no letras")
+
+        }
+
+        else {
+
+            return numero_valido!
+
+        }
+
+    }
+
+}
+ 
+while true {
+
+    let numero_aleatorio = Int.random(in: 1...100)
+
+    let jugador = pedir_nombre()
+
+    var respuesta_del_usuario = -1
+
+    var intentos = 0
+
+    while respuesta_del_usuario != numero_aleatorio {
+
+        intentos += 1
+
+        respuesta_del_usuario = validar_entrada_a_numero()
+
+        if respuesta_del_usuario < numero_aleatorio {
+
+            let masGrande = Int.random(in:1...5)
+
+            if masGrande == 1 {
+
+                print("El numero es mas grande")
+
+            }
+
+            else if masGrande == 2 {
+
+                print("Mas grande papi")
+
+            }
+
+            else if masGrande == 3 {
+
+                print("Aun más grande mi rey")
+
+            }
+
+            else if masGrande == 4 {
+
+                print("Mas mas mas grandeeee")
+
+            }
+
+            else if masGrande == 5 {
+
+                print("MAAAAAAAS!!!")
+
+            }
+
+        } else if respuesta_del_usuario > numero_aleatorio {
+
+            print("El numero es mas pequeño")
+
+        }
+
+    }
+
+    print("Le atinaste weee! El numero era \(numero_aleatorio) y lo lograste en \(intentos) intentos")
+
+    scoreboard.append((jugador, intentos))
+
+    print("\nScoreboard:")
+
+    for (nombre, score) in scoreboard {
+
+        print("\(nombre): \(score) intentos")
+
+    }
+
+    print("\n¿Quieres jugar otra vez? (si/no)")
+
+    if let respuesta = readLine() {
+
+        if respuesta.lowercased() != "si" {
+
+            print("Gracias por jugar webon")
+
+            break
+
+        }
+
+    }
+
+}
+ 
