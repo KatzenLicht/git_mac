@@ -1,0 +1,164 @@
+//inspirado en Terraria, creamos 5 clases basicas (Jugador, Enemigo, Objeto, Arma, Mundo)
+
+class Jugador{
+    var nombre: String
+    var vida: Int
+    var mana: Int
+    
+    init(nombre: String, vida: Int, mana: Int) {
+        self.nombre = nombre
+        self.vida = vida
+        self.mana = mana
+    }
+    
+    func información_del_jugador(){
+        print("\nNombre del jugador: \(nombre)\nVida: \(vida)\nMana: \(mana)")
+    }
+}
+
+class Enemigo{
+    var nombre: String
+    var tipo: String
+    var vida: Int
+    
+    init(nombre: String, tipo: String, vida: Int){
+        self.nombre = nombre
+        self.tipo = tipo
+        self.vida = vida
+    }
+    
+    func información_del_enemigo(){
+        print("\nNombre del enemigo: \(nombre)\nTipo: \(tipo)\nVida: \(vida)")
+    }
+}
+
+class Arma {
+    var nombre: String
+    var tipo: String
+    var dañoBase: Int
+    var calidad: String
+    var dañoFinal: Int
+    
+    init(dañoBase: Int) {
+        self.nombre = Arma.generarArma()
+        self.tipo = Arma.definirTipo(nombre: self.nombre)
+        self.dañoBase = dañoBase
+        self.calidad = Arma.generarCalidad()
+        self.dañoFinal = Arma.calcularDaño(base: dañoBase, calidad: self.calidad)
+    }
+    
+    static func generarArma() -> String {
+        let armas = ["Uchigatana", "Longinus Spear", "Arco Largo", "Tomo mágico de fuego", "Hacha de batalla", "Ballesta Relampago"]
+        return armas.randomElement()!
+    }
+    
+    static func definirTipo(nombre: String) -> String {
+        switch nombre {
+        case "Uchigatana":
+            return "Cuerpo a Cuerpo"
+        case "Longinus Spear":
+            return "Cuerpo a Cuerpo"
+        case "Arco Largo":
+            return "Arma a Distancia"
+        case "Ballesta Relampago":
+            return "Arma a Distancia"
+        case "Tomo mágico de fuego":
+            return "Arma Mágica"
+        case "Hacha de batalla":
+            return "Cuerpo a Cuerpo"
+        default:
+            return "Desconocido"
+        }
+    }
+    
+    static func generarCalidad() -> String {
+        let prob = Int.random(in: 1...100)
+        switch prob {
+        case 100:
+            return "Legendario"
+        case 91...99:
+            return "Épico"
+        case 76...90:
+            return "Raro"
+        case 51...75:
+            return "Poco Común"
+        case 2...50:
+            return "Común"
+        default:
+            return "Roto"
+        }
+    }
+    
+    static func calcularDaño(base: Int, calidad: String) -> Int {
+        switch calidad {
+        case "Legendario":
+            return Int(Double(base) * 5.0)
+        case "Épico":
+            return Int(Double(base) * 2.5)
+        case "Raro":
+            return Int(Double(base) * 2.0)
+        case "Poco Común":
+            return Int(Double(base) * 1.5)
+        case "Común":
+            return base
+        case "Roto":
+            return Int(Double(base) * 0.5)
+        default:
+            return base
+        }
+    }
+    
+    func información_del_arma() {
+        print("\nNombre del arma: \(nombre)\nTipo: \(tipo)\nCalidad: \(calidad)\nDaño: \(dañoFinal)")
+    }
+}
+
+class Objeto {
+    var nombre: String
+    var tipo: String
+    var cantidad: Int
+    
+    init(nombre: String, tipo: String, cantidad: Int){
+        self.nombre = nombre
+        self.tipo = tipo
+        self.cantidad = cantidad
+    }
+    
+    func información_del_objeto(){
+        print("\nNombre del objeto: \(nombre)\nTipo: \(tipo)\nCantidad: \(cantidad)")
+    }
+}
+
+class Mundo {
+    var nombre: String
+    var tamaño: String
+    var dificultad: String
+    
+    init(nombre: String, tamaño: String, dificultad: String){
+        self.nombre = nombre
+        self.tamaño = tamaño
+        self.dificultad = dificultad
+    }
+    
+    func información_del_mundo(){
+        print("\nNombre del mundo: \(nombre)\nTamaño: \(tamaño)\nDificultad: \(dificultad)")
+    }
+}
+
+print("Datos:")
+
+let player = Jugador(nombre: "Bodoque", vida: 100, mana: 100)
+player.información_del_jugador()
+
+let enemy = Enemigo(nombre: "Devoramundos", tipo: "Jefe", vida: 1500)
+enemy.información_del_enemigo()
+
+let weapon = Arma(dañoBase: 25)
+weapon.información_del_arma()
+
+let object = Objeto(nombre: "Huesos", tipo: "Material", cantidad: 14)
+object.información_del_objeto()
+
+let world = Mundo(nombre: "BodoMundo", tamaño: "Grande", dificultad: "Maestro")
+world.información_del_mundo()
+
