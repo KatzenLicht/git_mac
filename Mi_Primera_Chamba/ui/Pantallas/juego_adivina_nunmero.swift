@@ -1,37 +1,26 @@
-//
-//  juego_adivina_nunmero.swift
-//  Mi_Primera_Chamba
-//
-//  Created by alumno on 9/5/25.
-//
 import SwiftUI
-
+ 
 enum EstadosJuego{
     case esta_jugando
-    case haz_ganado
+    case ha_ganado
 }
-
+ 
+ 
 struct JuegoAdivinaNumero: View{
     @State var entrada_del_usuario: String = ""
     @State var intento_del_usuario = 0
     @State var mostrar_spoiler = false
     @State var leyenda: String = ""
-    
     @State var estado_del_juego: EstadosJuego = EstadosJuego.esta_jugando
-    
     @State var numero_aleatorio = Int.random(in: 1...100)
-    
     func validar_intento(){
         let numero_del_usuario = Int(entrada_del_usuario)
-        
-        //print("La entrada del usuario es: \(numero_del_usuario)")
-        
+        // print("La entrada del usaurio es: \(numero_del_usuario)")
         if let numero_del_usuario = numero_del_usuario{
             intento_del_usuario += 1
-            
-            if numero_del_usuario == numero_aleatorio{
-                leyenda = "Haz ganado"
-                estado_del_juego = .haz_ganado
+            if(numero_del_usuario == numero_aleatorio){
+                leyenda = "Has ganado"
+                estado_del_juego = .ha_ganado
             }
             else if (numero_del_usuario > numero_aleatorio){
                 leyenda = "Tu intento es mayor"
@@ -40,49 +29,39 @@ struct JuegoAdivinaNumero: View{
                 leyenda = "Tu intento es menor"
             }
         }
-        else{
-            leyenda = "Es nil"
+        else {
+            leyenda = "Por favor introduce un numero valido"
         }
-        
     }
-    
     func loop_juego(){
         switch(estado_del_juego){
             case .esta_jugando:
                 validar_intento()
-            case .haz_ganado:
+            case .ha_ganado:
                 intento_del_usuario = 0
                 estado_del_juego = .esta_jugando
                 numero_aleatorio = Int.random(in: 1...100)
                 leyenda = ""
+                entrada_del_usuario = ""
         }
     }
-    
     var body: some View{
         VStack{
-            Text("SPOILER \(numero_aleatorio)")
-                .onTapGesture {
-                    mostrar_spoiler = !mostrar_spoiler
+            Spoiler(texto: "Número \(numero_aleatorio)")
+            Spacer()
+            Text("REGLAS") .font(.system(size:25))
+            Text("Adivina el numero aleatorio")
+            Text("Cantidad de intentos: \(intento_del_usuario)") .font(.system(size: 25))
+            Spacer()
+            Botonexto(accion: {
+                if estado_del_juego != .ha_ganado {
+                    loop_juego()
                 }
-                .foregroundStyle((mostrar_spoiler) ? Color.black : Color .white)
-            Spacer()
-            Text("REGLAS")
-            Text("Cantidad de intentos: \(intento_del_usuario)")
-            Spacer()
-            TextField("Introduce un numero por favor", text:
-                $entrada_del_usuario)
-                .frame(width: 250)
-                .multilineTextAlignment(.center)
-            
-            Button(action: loop_juego){
-                Text("Intentar")
-                Image(systemName: "paperplane.fill")
-            }
-                   if(estado_del_juego == .haz_ganado){
-                Button(action: {
-                    estado_del_juego = .esta_jugando
-                }){
-                    Text("Reiniciar Juego")
+            }, texto: $entrada_del_usuario, place_holder: "INTRODUCE UN NÚMERO", etiqueta: "Intentar")
+            if(estado_del_juego == .ha_ganado){
+                Spacer()
+                Button(action: loop_juego){
+                    Text("Reiniciar juego")
                 }
             }
             Text(leyenda)
@@ -92,10 +71,7 @@ struct JuegoAdivinaNumero: View{
         }
     }
 }
-
+ 
 #Preview {
     JuegoAdivinaNumero()
 }
-
-
-
