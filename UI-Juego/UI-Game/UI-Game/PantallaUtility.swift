@@ -9,7 +9,7 @@ struct UtilityView: View {
                 //ENCABEZADO
                 HStack {
                     Text("UTILITY FOLDERS")
-                        .padding(.trailing, 152)
+                        .padding(.trailing, 189)
                         .padding(.leading, 10)
                         .background(.green)
                         .font(.system(size: 18, weight: .bold))
@@ -40,13 +40,114 @@ struct UtilityView: View {
                 
                 //PRINCIPAL
                 Spacer()
-                HStack{
-                    VStack{
-                        
+                VStack{
+                    Divider().padding(.top, 20).background(Color.green)
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("IMAGES")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("CODES")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("HTML")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
                     }
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("VIDEO")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("APPS")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("SAFARI")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                    }
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("SWIFT")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("PROJECT")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                        Button(action: {}) {
+                            Spacer()
+                            Text("XCODE")
+                                .font(.system(size: 16))
+                                .foregroundColor(.green)
+                                .padding([.top, .bottom], 75)
+                            Spacer()
+                        }
+                        .border(.green)
+                        Spacer()
+                    }
+                    Spacer()
                 }
-                Spacer()
                 .border(.green)
+                
                 
                 Spacer()
                 
