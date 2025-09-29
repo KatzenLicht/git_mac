@@ -39,13 +39,32 @@ enum SeleccionSeries: String, CaseIterable, Identifiable{
     var id: Self { self }
 }
 
+enum SeleccionControl: String, CaseIterable, Identifiable{
+    case Seleccionar
+    case Afirmativo
+    case Negativo
+    
+    var id: Self { self }
+}
+
+enum SeleccionGatos: String, CaseIterable, Identifiable{
+    case Seleccionar
+    case Afirmativo
+    case Negativo
+    
+    var id: Self { self }
+}
+
 struct PantallaOpciones: View {
     @State var quiere_palomitas: Bool = false
+    @State var quiere_jugar: Bool = false
     @State var sabor_de_palomitas: SaboresPalomitas = .Seleccionar
     
     @State var QueVer: OpcionesParaVer = .Seleccionar
     @State var QuePelicula: SeleccionPelicula = .Seleccionar
     @State var QueSeries: SeleccionSeries = .Seleccionar
+    @State var TieneControl: SeleccionControl = .Seleccionar
+    @State var QuiereVerGatos: SeleccionGatos = .Seleccionar
     
     var body: some View {
         ScrollView{
@@ -116,8 +135,9 @@ struct PantallaOpciones: View {
                         }
                         if QueVer == .Peliculas{
                             HStack{
+                                Spacer()
                                 Text("¿Que pelicula quieres ver?")
-                                
+                                Spacer()
                                 Picker(selection: $QuePelicula, label: Text("Que pelicula ver?")){
                                     Text("Seleccionar")
                                         .tag(SeleccionPelicula.Seleccionar)
@@ -130,12 +150,14 @@ struct PantallaOpciones: View {
                                     Text("World War Z")
                                         .tag(SeleccionPelicula.WorldWarZ)
                                 }
+                                Spacer()
                             }
                         }
                         if QueVer == .Series{
                             HStack{
+                                Spacer()
                                 Text("¿Que serie quieres ver?")
-                                
+                                Spacer()
                                 Picker(selection: $QueSeries, label: Text("Que serie ver?")){
                                     Text("Seleccionar")
                                         .tag(SeleccionSeries.Seleccionar)
@@ -148,6 +170,7 @@ struct PantallaOpciones: View {
                                     Text("The Walking Dead")
                                         .tag(SeleccionSeries.TheWalkingDead)
                                 }
+                                Spacer()
                             }
                         }
                     }
@@ -164,9 +187,115 @@ struct PantallaOpciones: View {
                             Spacer()
                             Text("¿Quieres jugar smash?")
                             Spacer()
-                            CajaSeleccionada(checado: $quiere_palomitas, tamaño: 25)
+                            CajaSeleccionada(checado: $quiere_jugar, tamaño: 25)
                             Spacer()
                         }
+                    }
+                    if quiere_jugar{
+                        HStack{
+                            Spacer()
+                            Text("¿Tienes control?")
+                            Spacer()
+                            Picker(selection: $TieneControl, label: Text("Tendra control?")){
+                                Text("Seleccionar")
+                                    .tag(SeleccionControl.Seleccionar)
+                                Text("Si")
+                                    .tag(SeleccionControl.Afirmativo)
+                                Text("No")
+                                    .tag(SeleccionControl.Negativo)
+                            }
+                            Spacer()
+                        }
+                        if TieneControl == .Afirmativo{
+                            Text("Caele pues")
+                        }
+                        if TieneControl == .Negativo{
+                            Text("Che jodido, caele aun asi")
+                        }
+                    }
+                    Divider()
+                        .frame(height: 2)
+                        .background(Color.gray)
+                    HStack{
+                        Spacer()
+                        Text("Seleccion de gatitos")
+                        Spacer()
+                    }
+                    VStack{
+                        HStack{
+                            Spacer()
+                            Text("¿Quieres ver gatitos?")
+                            Spacer()
+                            Picker(selection: $QuiereVerGatos, label: Text("Querra ver gatos?")){
+                                Text("Seleccionar")
+                                    .tag(SeleccionGatos.Seleccionar)
+                                Text("Si")
+                                    .tag(SeleccionGatos.Afirmativo)
+                                Text("No")
+                                    .tag(SeleccionGatos.Negativo)
+                            }
+                            Spacer()
+                        }
+                    }
+                    if QuiereVerGatos == .Negativo{
+                        Text("Me caes mal... neta")
+                    }
+                    if QuiereVerGatos == .Afirmativo{
+                        Text("Bienvenido a Gato-Landia!!!")
+                        HStack{
+                            Spacer()
+                            VStack{
+                                Text("𓃠")
+                                Text("₍^. .^₎⟆")
+                                Text("𑄝")
+                                Text("ฅ^>⩊<^ ฅ")
+                                Text("ᓚᘏᗢ")
+                                Text("≽^•⩊•^≼")
+                            }
+                            Spacer()
+                            VStack{
+                                Text("≽^• ˕ • ྀི≼")
+                                Text("ฅ ฅ")
+                                Text("⋆🐾°")
+                                Text("ᨐฅ")
+                                Text("(•˕ •マ.ᐟ")
+                                Text("ᩭᘏᗢ")
+                            }
+                            Spacer()
+                            VStack{
+                                Text("🐈‍⬛ྀི")
+                                Text("≽ܫ≼")
+                                Text("/ᐠ > ˕ <マ ₊˚⊹♡")
+                                Text("₍^. .^₎Ⳋ")
+                                Text("⚞ • ⚟")
+                                Text("^-˕-^")
+                            }
+                            Spacer()
+                        }
+                        
+                        Text("⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠟⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣧⠀⠀⠀⠀⣠⣾⣿⣿⣿⣆⠀⠀⠀⠀⠀⣠⣾⣿⣿⣆⠀⠀⢀⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⠀⠀⠀⢸⣿⣿⣿⡃⠀⣿⡀⠀⠀⠀⠀⣿⠁⠈⣿⣿⡀⠀⠈⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⡟⠀⠀⠀⠈⢿⣿⣿⣷⣴⡿⠀⠀⠀⠀⠀⢿⣦⣴⣿⡿⠁⠀⠀⣿⣿⣿⣿⣿")
+                        Text("⡿⠿⠿⠿⠀⠀⠀⠀⠀⠉⠉⠉⠉⠀⠀⠀⠀⠁⠀⠈⠙⠛⠋⠀⠀⠀⠀⠛⣛⡛⠛⢻")
+                        Text("⣷⣶⣶⡶⠦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⢿⣿")
+                        Text("⣯⣥⣴⣶⡿⠓⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠚⠿⢿⣷⣿⣷⣤")
+                        Text("⣿⣿⣋⣥⣶⣿⣿⣿⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣴⣾⣿⣿⣿⣶⣤⣝⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿")
+                        Text("⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿")
                     }
                 }
             }
