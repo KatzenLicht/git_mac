@@ -7,10 +7,8 @@ struct PantallaGaleria: View{
         Text("Pantalla de galeria")
         NavigationLink{
             PantallaInicio()
+        } label: {
+            Text("Ir a Inicio")
         }
     }
-}
-
-#Preview {
-    PantallaGaleria()
 }

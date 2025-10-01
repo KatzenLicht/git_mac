@@ -5,6 +5,7 @@ struct NavegacionPrincipal: View{
     var body: some View{
         NavigationStack{
             PantallaInicio()
+                .navigationTitle("inicio")
         }
     }
 }

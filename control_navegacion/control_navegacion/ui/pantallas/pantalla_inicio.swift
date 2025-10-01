@@ -11,6 +11,12 @@ struct PantallaInicio: View {
             } label: {
                 Text("Ir a Configuraciones")
             }
+            NavigationLink{
+                PantallaGaleria()
+            } label: {
+                Text("Ir a pantalla galeria")
+            }
+            Spacer()
         }
     }
 }

@@ -7,7 +7,3 @@ struct PantallaConfiguracion: View{
         
     }
 }
-
-#Preview {
-    PantallaConfiguracion()
-}
