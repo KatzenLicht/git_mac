@@ -16,7 +16,6 @@ struct PantallaInicio: View {
             } label: {
                 Text("Ir a pantalla galeria")
             }
-            Spacer()
         }
     }
 }
