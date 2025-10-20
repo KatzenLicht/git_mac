@@ -3,7 +3,7 @@ import Foundation
 
 @Observable
 @MainActor
-class ControladorGeneral{
+class DemonSlayerApp{
     let url_base = "https://jsonplaceholder.typicode.com"
     
     var publicaciones: [Publicacion] = []
