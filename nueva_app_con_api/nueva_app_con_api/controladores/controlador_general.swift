@@ -4,13 +4,38 @@ import Foundation
 @Observable
 @MainActor
 class DemonSlayerApp{
-    let url_base = "https://jsonplaceholder.typicode.com"
+    var personaje = [Personaje]()
+    var datos_pagina_actual: DatosPagina? = nil
+    var pagina_actual = 1
+    static let demon_slayer_api = "https://demonslayer-api.com/api/v1"
     
-    var publicaciones: [Publicacion] = []
-    var comentarios: [Comentario] = []
+    init(){
+        Task{
+            await descargar_personajes()
+        }
+    }
     
-    func descargar_publicaciones() async{
-        guard let publicaciones_descargadas: [Publicacion] = await ServicioWeb().descargar_datos(url: "\(url_base)/posts") else { return }
-        publicaciones = publicaciones_descargadas
+    func descargar_personajes() async {
+        guard let pagina_con_datos: Pagina = await ConexionAPI.descargar_datos(url: "\(DemonSlayerApp.demon_slayer_api)/characters?page=\(pagina_actual)")
+        else {
+            print("No hay conexion a internet")
+            return
+        }
+        datos_pagina_actual = pagina_con_datos.datos
+        personajes = pagina_con_datos.personajes
+    }
+    
+    func siguiente_pagina(){
+        pagina_actual = pagina_actual + 1
+        
+        if(pagina_actual > datos_pagina_actual!.totalPages){
+            pagina_actual -= 1
+            return
+        }
+        
+        print("pagina actual: \(pagina_actual)")
+        Task{
+            await descargar_personajes()
+        }
     }
 }
